@@ -41,14 +41,16 @@ while game_is_on:
 
     if (snake.head.xcor() > 300) or (snake.head.xcor() < -300) or (snake.head.ycor() > 300) or (snake.head.ycor() < -300):
         print("game over")
-        game_is_on = False;
-        scoreboard.game_over();
+
+
+        scoreboard.reset_scoreboard();
+        snake.reset();
 
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) <10:
-            print("Game over - collision with the snake's body")
-            game_is_on = False;
-            scoreboard.game_over();
+            print("Game over - collision with the snake's body");
+            scoreboard.reset_scoreboard();
+            snake.reset();
             print("Game over flag set to False");
 
 

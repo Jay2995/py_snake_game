@@ -5,6 +5,7 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__();
         self.score = 0;
+        self.highs_score = 0;
         self.ht()
         self.goto(x=0, y=250)
         self.color("White");
@@ -12,10 +13,14 @@ class Scoreboard(Turtle):
 
     def update_score(self):
         self.clear()
-        self.write(arg=f"SCORE: {self.score}",move=False, align="center", font=('Courier', 10, 'normal')); 
+        self.write(arg=f"SCORE: {self.score} High score: {self.highs_score} ",move=False, align="center", font=('Courier', 10, 'normal')); 
 
-    def game_over(self):
-        # self.clear()
-        self.goto(x=0, y=0);
-        self.write(arg=f"GAME OVER. Your final score was {self.score}",move=False, align="center", font=('Courier', 15, 'normal')); 
+    def reset_scoreboard(self):
+        if self.score > self.highs_score:
+            self.highs_score = self.score;
+        self.score = 0;
+        self.update_score(); 
 
+    def increase_score(self):
+        self.score += 1;
+        self.update_score();
